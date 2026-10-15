@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Task3.API/Task3.API.csproj" />
+  <Project Path="Task3.Application/Task3.Application.csproj" />
+  <Project Path="Task3.Domain/Task3.Domain.csproj" />
+  <Project Path="Task3.Infrastructure/Task3.Infrastructure.csproj" />
+</Solution>
