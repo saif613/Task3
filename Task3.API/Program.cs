@@ -2,6 +2,8 @@
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Task3.API.Middleware;
 using Task3.Application;
 using Task3.Application.Behaviors;
 using Task3.Application.Interface;
@@ -10,6 +12,15 @@ using Task3.Infrastructure.Persistence;
 using Task3.Infrastructure.Service;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Host.UseSerilog((context, services, configuration) =>
+{
+    configuration
+        .ReadFrom.Configuration(context.Configuration)
+        .ReadFrom.Services(services)
+        .Enrich.FromLogContext();
+});
 
 // 1. Database
 var connectionString =
@@ -56,7 +67,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseSerilogRequestLogging();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 app.UseAuthorization();
+
+
 
 app.MapControllers();
 
