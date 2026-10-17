@@ -32,6 +32,8 @@ builder.Services.AddDbContext<TaskDb3>(options =>
 // 2. Application Services
 builder.Services.AddScoped<IProductService, ProductService>();
 
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
 // 4. FluentValidation
 builder.Services.AddValidatorsFromAssembly(
     typeof(ApplicationAssemblyReference).Assembly);

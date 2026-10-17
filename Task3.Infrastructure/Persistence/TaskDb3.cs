@@ -18,6 +18,8 @@ public class TaskDb3 : DbContext
     public DbSet<Category> Categories { get; set; } = null!;
     public DbSet<Product> Products { get; set; } = null!;
 
+    public DbSet<Employee> Employees { get; set; } = null!; 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
